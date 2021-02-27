@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <h1>Welcome to HJ'S Site!</h1>
+    <h2>Made by EJS</h2>
+   
+    <h5>이름 : <input type='text' id='inputtext'>
+    <input type='text' id='inputtext2'> 
+    <button id='firstbutton'>버튼</button> <h5>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $('#firstbutton').click(function(){
+            
+            var userInput=$('#inputtext').val();
+            var userInput2=$('#inputtext2').val();
+            //AJAX 형식으로 서버에 FE 데이터 보내기
+            $.ajax({
+                url: "/userData",
+                type: "POST",
+                //사용자 input으로 받아온 데이터를 그대로 보내줌.
+                data: {
+                    userData1 : userInput,
+                    userData2 : userInput2
+                },
+                success: function (data) { //data 안에 response가 담겨있음.
+                    console.log(data);
+                    if(data==true){
+                        alert('요청 성공');
+                    }
+                },
+            });
+
+        })
+    </script>
+</html>
+
+
